@@ -32,9 +32,12 @@ if [ $? -ne 0 ]; then
     exit 1
 fi
 
-# Avvia l'applicazione
-echo -e "${GREEN}Avvio dell'applicazione...${NC}"
-mvn javafx:run
+# Imposta il percorso dei moduli JavaFX
+JAVAFX_PATH="$HOME/.m2/repository/org/openjfx"
+JAVAFX_MODULES="$JAVAFX_PATH/javafx-controls/21.0.2:$JAVAFX_PATH/javafx-fxml/21.0.2:$JAVAFX_PATH/javafx-base/21.0.2:$JAVAFX_PATH/javafx-graphics/21.0.2"
+
+# Esegue la classe Main
+java --module-path "$JAVAFX_MODULES" --add-modules javafx.controls,javafx.fxml,javafx.base,javafx.graphics -cp target/classes software.Main
 
 # Gestisce eventuali errori
 if [ $? -ne 0 ]; then
