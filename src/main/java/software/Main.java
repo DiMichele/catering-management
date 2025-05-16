@@ -1,5 +1,13 @@
 package software;
 
+import java.io.IOException;
+
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
+import javafx.scene.control.Tab;
+import javafx.scene.control.TabPane;
+import javafx.stage.Stage;
 import software.domain.utenti.Chef;
 import software.service.CompitoCucinaService;
 import software.service.EventoService;
@@ -9,14 +17,6 @@ import software.service.UtenteService;
 import software.ui.controllers.CompitiCucinaController;
 import software.ui.controllers.MenuController;
 import software.ui.controllers.RicettaController;
-import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
-import javafx.scene.control.Tab;
-import javafx.scene.control.TabPane;
-import javafx.stage.Stage;
-
-import java.io.IOException;
 
 public class Main extends Application {
     
@@ -40,7 +40,7 @@ public class Main extends Application {
             FXMLLoader menuLoader = new FXMLLoader(getClass().getResource("/software/ui/views/menu-view.fxml"));
             MenuController menuController = new MenuController(menuService, ricettaService, chefCorrente);
             menuLoader.setController(menuController);
-            Tab menuTab = new Tab("Gestione Menù");
+            Tab menuTab = new Tab("Gestione menu");
             menuTab.setContent(menuLoader.load());
             menuTab.setClosable(false);
             
