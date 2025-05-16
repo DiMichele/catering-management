@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            prefHeight="700.0" prefWidth="900.0">
+    
+    <top>
+        <VBox spacing="10" alignment="CENTER">
+            <padding>
+                <Insets top="20" right="20" bottom="10" left="20"/>
+            </padding>
+            
+            <Label text="Gestione Compiti Cucina" style="-fx-font-size: 24px; -fx-font-weight: bold;"/>
+            
+            <HBox spacing="10" alignment="CENTER">
+                <Label text="Evento:"/>
+                <ComboBox fx:id="cmbEventi" prefWidth="350"/>
+                <Button text="Crea Riepilogo Compiti" onAction="#onCreaRiepilogoCompiti"/>
+            </HBox>
+        </VBox>
+    </top>
+    
+    <center>
+        <SplitPane dividerPositions="0.6" orientation="VERTICAL">
+            <VBox spacing="10">
+                <padding>
+                    <Insets top="10" right="10" bottom="10" left="10"/>
+                </padding>
+                
+                <HBox spacing="10" alignment="CENTER_LEFT">
+                    <Button text="Ordina per importanza" onAction="#onOrdinaCompiti"/>
+                    <Region HBox.hgrow="ALWAYS"/>
+                    <Button text="Monitora avanzamento" onAction="#onMonitoraAvanzamento"/>
+                </HBox>
+                
+                <TableView fx:id="tblCompiti" VBox.vgrow="ALWAYS">
+                    <columns>
+                        <TableColumn fx:id="colRicetta" text="Ricetta" prefWidth="180"/>
+                        <TableColumn fx:id="colCuoco" text="Cuoco" prefWidth="150"/>
+                        <TableColumn fx:id="colTurno" text="Turno" prefWidth="170"/>
+                        <TableColumn fx:id="colStato" text="Stato" prefWidth="100"/>
+                        <TableColumn fx:id="colTempo" text="Tempo (min)" prefWidth="100"/>
+                        <TableColumn fx:id="colQuantita" text="Quantità" prefWidth="80"/>
+                    </columns>
+                    <contextMenu>
+                        <ContextMenu>
+                            <items>
+                                <MenuItem text="Aggiorna stato" onAction="#onAggiornaStatoCompito"/>
+                                <MenuItem text="Registra feedback" onAction="#onRegistraFeedback"/>
+                            </items>
+                        </ContextMenu>
+                    </contextMenu>
+                </TableView>
+            </VBox>
+            
+            <TabPane>
+                <Tab text="Assegna Compiti" closable="false">
+                    <GridPane hgap="10" vgap="10">
+                        <padding>
+                            <Insets top="15" right="15" bottom="15" left="15"/>
+                        </padding>
+                        <columnConstraints>
+                            <ColumnConstraints minWidth="100" prefWidth="120"/>
+                            <ColumnConstraints prefWidth="200" hgrow="ALWAYS"/>
+                            <ColumnConstraints minWidth="100" prefWidth="120"/>
+                            <ColumnConstraints prefWidth="200" hgrow="ALWAYS"/>
+                        </columnConstraints>
+                        
+                        <Label text="Cuoco:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                        <HBox spacing="5" GridPane.rowIndex="0" GridPane.columnIndex="1">
+                            <ComboBox fx:id="cmbCuochi" prefWidth="200" maxWidth="Infinity" HBox.hgrow="ALWAYS"/>
+                            <Button text="Verifica disponibilità" onAction="#onVerificaCuochiDisponibili"/>
+                        </HBox>
+                        
+                        <Label text="Turno:" GridPane.rowIndex="0" GridPane.columnIndex="2"/>
+                        <ComboBox fx:id="cmbTurni" prefWidth="200" maxWidth="Infinity" GridPane.rowIndex="0" GridPane.columnIndex="3"/>
+                        
+                        <Label text="Ricetta:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+                        <ComboBox fx:id="cmbRicette" prefWidth="200" maxWidth="Infinity" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+                        
+                        <Label text="Tempo stimato:" GridPane.rowIndex="1" GridPane.columnIndex="2"/>
+                        <HBox spacing="5" alignment="CENTER_LEFT" GridPane.rowIndex="1" GridPane.columnIndex="3">
+                            <Spinner fx:id="spnTempoStimato" editable="true" prefWidth="100"/>
+                            <Label text="minuti"/>
+                        </HBox>
+                        
+                        <Label text="Quantità:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+                        <Spinner fx:id="spnQuantita" editable="true" prefWidth="100" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+                        
+                        <Label text="Importanza:" GridPane.rowIndex="2" GridPane.columnIndex="2"/>
+                        <HBox spacing="10" GridPane.rowIndex="2" GridPane.columnIndex="3">
+                            <RadioButton text="Alta" toggleGroup="$grpImportanza" selected="true"/>
+                            <RadioButton text="Media" toggleGroup="$grpImportanza"/>
+                            <RadioButton text="Bassa" toggleGroup="$grpImportanza"/>
+                        </HBox>
+                        
+                        <Button text="Assegna Compito" onAction="#onAssegnaCompito" 
+                                maxWidth="Infinity" GridPane.rowIndex="3" GridPane.columnIndex="0" 
+                                GridPane.columnSpan="4" style="-fx-base: lightgreen;"/>
+                    </GridPane>
+                </Tab>
+                
+                <Tab text="Gestione Turni" closable="false">
+                    <GridPane hgap="10" vgap="10">
+                        <padding>
+                            <Insets top="15" right="15" bottom="15" left="15"/>
+                        </padding>
+                        <columnConstraints>
+                            <ColumnConstraints minWidth="100" prefWidth="120"/>
+                            <ColumnConstraints prefWidth="200" hgrow="ALWAYS"/>
+                            <ColumnConstraints minWidth="100" prefWidth="120"/>
+                            <ColumnConstraints prefWidth="200" hgrow="ALWAYS"/>
+                        </columnConstraints>
+                        
+                        <Label text="Data:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                        <DatePicker fx:id="dtpData" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+                        
+                        <Label text="Ora inizio:" GridPane.rowIndex="0" GridPane.columnIndex="2"/>
+                        <TextField fx:id="txtOraInizio" promptText="HH:MM" GridPane.rowIndex="0" GridPane.columnIndex="3"/>
+                        
+                        <Label text="Ora fine:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+                        <TextField fx:id="txtOraFine" promptText="HH:MM" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+                        
+                        <Label text="Luogo:" GridPane.rowIndex="1" GridPane.columnIndex="2"/>
+                        <TextField fx:id="txtLuogo" GridPane.rowIndex="1" GridPane.columnIndex="3"/>
+                        
+                        <HBox spacing="10" alignment="CENTER" GridPane.rowIndex="2" GridPane.columnIndex="0" GridPane.columnSpan="4">
+                            <Button text="Crea Turno" onAction="#onCreaTurno"/>
+                            <Button text="Controlla Stato Turno" onAction="#onControllaStatoTurno"/>
+                        </HBox>
+                    </GridPane>
+                </Tab>
+            </TabPane>
+        </SplitPane>
+    </center>
+    
+</BorderPane> 

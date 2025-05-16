@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            prefHeight="600.0" prefWidth="800.0">
+    <padding>
+        <Insets top="10" right="10" bottom="10" left="10"/>
+    </padding>
+    
+    <left>
+        <VBox spacing="10" prefWidth="250">
+            <Label text="Ricette" style="-fx-font-weight: bold; -fx-font-size: 14px;"/>
+            <ListView fx:id="lstRicette" VBox.vgrow="ALWAYS"/>
+            <Button fx:id="btnPubblicaRicetta" text="Pubblica Ricetta" maxWidth="Infinity"/>
+        </VBox>
+    </left>
+    
+    <center>
+        <SplitPane dividerPositions="0.6" orientation="VERTICAL">
+            <VBox spacing="10" SplitPane.resizableWithParent="true">
+                <padding>
+                    <Insets top="10" right="10" bottom="10" left="10"/>
+                </padding>
+                
+                <GridPane hgap="10" vgap="10">
+                    <columnConstraints>
+                        <ColumnConstraints hgrow="NEVER" minWidth="100" prefWidth="120"/>
+                        <ColumnConstraints hgrow="ALWAYS"/>
+                    </columnConstraints>
+                    
+                    <Label text="Nome:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                    <TextField fx:id="txtNome" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+                    
+                    <Label text="Descrizione:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+                    <TextArea fx:id="txtDescrizione" prefRowCount="3" wrapText="true" 
+                              GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+                    
+                    <Label text="Tempo (min):" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+                    <Spinner fx:id="spnTempoPreparazione" editable="true" 
+                             GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+                    
+                </GridPane>
+                
+                <Button fx:id="btnCreaRicetta" text="Crea Ricetta" maxWidth="Infinity"/>
+            </VBox>
+            
+            <TabPane tabClosingPolicy="UNAVAILABLE">
+                <Tab text="Ingredienti">
+                    <VBox spacing="10">
+                        <padding>
+                            <Insets top="10" right="10" bottom="10" left="10"/>
+                        </padding>
+                        <ListView fx:id="lstIngredienti" VBox.vgrow="ALWAYS"/>
+                        <Button fx:id="btnAggiungiIngrediente" text="Aggiungi Ingrediente" maxWidth="Infinity"/>
+                    </VBox>
+                </Tab>
+                
+                <Tab text="Istruzioni">
+                    <VBox spacing="10">
+                        <padding>
+                            <Insets top="10" right="10" bottom="10" left="10"/>
+                        </padding>
+                        <ListView fx:id="lstIstruzioni" VBox.vgrow="ALWAYS"/>
+                        <Button fx:id="btnAggiungiIstruzione" text="Aggiungi Istruzione" maxWidth="Infinity"/>
+                    </VBox>
+                </Tab>
+                
+                <Tab text="Tags">
+                    <VBox spacing="10">
+                        <padding>
+                            <Insets top="10" right="10" bottom="10" left="10"/>
+                        </padding>
+                        <ListView fx:id="lstTags" VBox.vgrow="ALWAYS"/>
+                        <Button fx:id="btnAggiungiTag" text="Aggiungi Tag" maxWidth="Infinity"/>
+                    </VBox>
+                </Tab>
+            </TabPane>
+        </SplitPane>
+    </center>
+</BorderPane> 
