@@ -25,7 +25,7 @@ Un'applicazione Java per la gestione di ricette e catering. Questo prototipo per
 
 1. Clona il repository:
 ```
-git clone https://github.com/tuonome/catering-management.git
+git clone https://github.com/DiMichele/catering-management.git
 ```
 
 2. Entra nella directory del progetto:
@@ -75,4 +75,4 @@ git push origin nome-funzionalita
 
 ## Licenza
 
-[Specificare la licenza] 
+Questo progetto è distribuito con licenza MIT. Vedere il file `LICENSE` per ulteriori dettagli. 
