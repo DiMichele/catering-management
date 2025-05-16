@@ -88,6 +88,13 @@
                 <version>${javafx.maven.plugin.version}</version>
                 <configuration>
                     <mainClass>software.Main</mainClass>
+                    <options>
+                        <!-- Opzioni per risolvere problemi di moduli su Mac -->
+                        <option>--add-opens</option>
+                        <option>java.base/java.lang=ALL-UNNAMED</option>
+                        <option>--add-opens</option>
+                        <option>java.base/java.util=ALL-UNNAMED</option>
+                    </options>
                 </configuration>
             </plugin>
             <plugin>
